@@ -5,7 +5,6 @@ const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const logo = document.getElementById('logo');
 const footerLogo = document.getElementById('footerLogo');
-
 // Check for saved theme preference or default to 'light-mode'
 const currentTheme = localStorage.getItem('theme') || 'light-mode';
 body.classList.add(currentTheme);
@@ -88,13 +87,13 @@ const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll <= 0) {
         navbar.style.boxShadow = '0 2px 10px var(--shadow)';
     } else {
         navbar.style.boxShadow = '0 4px 20px var(--shadow-hover)';
     }
-    
+
     lastScroll = currentScroll;
 });
 
@@ -138,7 +137,7 @@ const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     // Get form data
     const formData = {
         name: document.getElementById('name').value,
@@ -147,13 +146,13 @@ contactForm.addEventListener('submit', (e) => {
         service: document.getElementById('service').value,
         message: document.getElementById('message').value
     };
-    
+
     // Here you would typically send the data to a server
     console.log('Form submitted:', formData);
-    
+
     // Show success message
     showNotification('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.', 'success');
-    
+
     // Reset form
     contactForm.reset();
 });
@@ -167,12 +166,12 @@ function showNotification(message, type = 'success') {
     if (existingNotification) {
         existingNotification.remove();
     }
-    
+
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
-    
+
     // Add styles
     notification.style.cssText = `
         position: fixed;
@@ -187,7 +186,7 @@ function showNotification(message, type = 'success') {
         animation: slideIn 0.3s ease;
         font-weight: 600;
     `;
-    
+
     // Add animation
     const style = document.createElement('style');
     style.textContent = `
@@ -213,10 +212,10 @@ function showNotification(message, type = 'success') {
         }
     `;
     document.head.appendChild(style);
-    
+
     // Add to document
     document.body.appendChild(notification);
-    
+
     // Remove after 5 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease';
@@ -233,7 +232,7 @@ function animateCounter(element, target, duration = 2000) {
     const start = 0;
     const increment = target / (duration / 16); // 60fps
     let current = start;
-    
+
     const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
@@ -270,13 +269,13 @@ const sections = document.querySelectorAll('section[id]');
 
 function highlightNavigation() {
     const scrollY = window.pageYOffset;
-    
+
     sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
         const sectionTop = section.offsetTop - 100;
         const sectionId = section.getAttribute('id');
         const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-        
+
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
             navLink?.classList.add('active');
         } else {
@@ -302,7 +301,7 @@ window.addEventListener('scroll', () => {
 // Service Cards Hover Effect
 // ===========================
 document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
         this.style.transition = 'all 0.3s ease';
     });
 });
@@ -318,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
             heroContent.style.opacity = '1';
         }, 100);
     }
-    
+
     // Highlight current navigation on load
     highlightNavigation();
 });
